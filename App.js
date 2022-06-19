@@ -22,7 +22,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'; 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; 
 import Selectcoin from './app/screens/dialogueBox/Selectcoin'
-import { Provider as PaperProvider } from 'react-native-paper';
 MaterialIcons.loadFont()
 Ionicons.loadFont()
 FontAwesome.loadFont()
@@ -31,10 +30,15 @@ MaterialCommunityIcons.loadFont()
 const App =  () => {
   const[load, setLoad] = useState(false);
   const {persistor, store} = storePre;
+
+  const changehandle=()=> {
+    setLoad(true)
+  }
   return (
     
     <Provider store={store}>
-    {!load && <Selectcoin loadHandle={setLoad}/>}
+      
+    {!load && <Selectcoin loadHandle={changehandle}/>}
     {load &&
       <PersistGate loading={null} persistor={persistor}>
         {navigationTypeTabs ? <TabNavigationStack/> : <MainStack />} 

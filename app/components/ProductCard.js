@@ -1,54 +1,30 @@
 import React,{useEffect, useState} from 'react';
-import {View, Text, Pressable, Image} from 'react-native';
+import {View, Text, Pressable, Image, Alert} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import { cal } from '../utils/ApiList';
 import {appColors} from '../utils/appColors';
-import {Alert} from 'react-native';
+
 import Label from './Label';
-import axios from "react-native-axios";
+
 import { useDispatch } from 'react-redux';
 import { cryptoPrices } from '../redux/cryptoPricesAction';
+import { useSelector } from 'react-redux';
 
 export default function ProductCard({navigation, item}) {
   const {title,name, description, price, image, isNew,rating} = item;
   const[coins,setCoins] = useState();
-  //console.log({item});
-
-  const dispatch = useDispatch();
-  const data={
-    "currency": "USD",
-    "sort": "rank",
-    "order": "ascending",
-    "offset": 0,
-    "limit": 1,
-    "meta": true
-  }
-  useEffect(()=>{
-    // Alert.alert("jsFHJDHFJK")
-    // setInterval(()=>{ cal() },1000)
-    //cal();
-    
-  },[coins])
  
-  const cal=()=>{
-    axios.post('https://api.livecoinwatch.com/coins/list',data,{
-        headers: { 
-        'content-Type': 'application/json',
-        'x-api-key': 'dc2efdfb-4389-437d-b755-e9e2593897a3'
-    }})
-    .then((res)=>{
-        // setCoins(data);
-      setCoins(res.data);
-      
-      //dispatch(cryptoPrices(res.data))
-      //dispatch({type:'PRICES',payload : res.data})
-    }).catch(()=>{
-        Alert.alert("error")
-    })
+    const { prices } = useSelector((state)=> state.cryptoPrices )
+  
+  useEffect(()=>{
+    setInterval(()=>{cryptoPrices(),
+    setCoins(prices)},2000)
+   
+  },[coins])
 
-}
 
   return (
+    <>
     <Pressable onPress={() => navigation.navigate('ProductDetails',{item})} style={{}}>
       <View
         style={{
@@ -56,6 +32,7 @@ export default function ProductCard({navigation, item}) {
            width: scale(160),
           //backgroundColor:appColors.lightGray
         }}>
+         
         <Image 
         resizeMode='contain'
         style={{height:scale(200), width:scale(180)}} 
@@ -79,7 +56,7 @@ export default function ProductCard({navigation, item}) {
       <View style={{paddingVertical: scale(3)}}>
         <Label text={title?.substring(0, 20)} style={{fontSize: scale(18), fontWeight: '500'}} />
       </View>
-
+      
       <View style={{paddingVertical: scale(2)}}>
         <Label
           text={description?.substring(0, 24)}
@@ -90,15 +67,22 @@ export default function ProductCard({navigation, item}) {
       <View style={{paddingVertical: scale(5)}}>
         <Label
           // text={coins?.map(e=> e.symbol + e.rate )}
+          // coins?.map(e=>e.symbol) + price/coins?.map(e=>e.rate)
 
-          text={coins?.map(e=>e.symbol) + price/coins?.map(e=>e.rate)}
+          text={coins ? coins?.map(e=>e.symbol) + price/coins?.map(e=>e.rate): <Text>loading...</Text>}
           style={{
             fontSize: scale(18),
             color: appColors.primary,
             fontWeight: '500',
           }}
         />
+       
       </View>
+  
     </Pressable>
+     
+    </>
+    
+    
   );
 }

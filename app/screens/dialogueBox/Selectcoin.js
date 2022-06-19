@@ -21,8 +21,8 @@ const Selectcoin = ({loadHandle}) => {
         style={{ height: 50, width: 150 }}
         onValueChange={(itemValue, itemIndex) =>{ setSelectedValue(itemValue),loadHandle()}}
       >
-        {prices?.map((item)=>(
-            <Picker.Item label={item.name} value={item.name}  />))}
+        {prices?.map((item,key)=>(
+            <Picker.Item label={item.name} value={item.name} key={key} />))}
       </Picker>
     </View>
   );

@@ -1,11 +1,11 @@
 import React,{useEffect, useState} from 'react';
-import {View, Text, Pressable, Image, TouchableOpacityBase, TouchableOpacity,Button} from 'react-native';
+import {View, Text, Pressable, Image, Alert} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import { cal } from '../utils/ApiList';
 import {appColors} from '../utils/appColors';
-import {Alert} from 'react-native';
+
 import Label from './Label';
-import axios from "react-native-axios";
+
 import { useDispatch } from 'react-redux';
 import { cryptoPrices } from '../redux/cryptoPricesAction';
 import { useSelector } from 'react-redux';
@@ -15,17 +15,12 @@ export default function ProductCard({navigation, item}) {
   const[coins,setCoins] = useState();
  
     const { prices } = useSelector((state)=> state.cryptoPrices )
-
-    const handleprice =()=> {
-      cryptoPrices();
-      setCoins(prices);
-    }
   
-  // useEffect(()=>{
-  //   setInterval(()=>{cryptoPrices(),
-  //   setCoins(prices)},2000)
-  //   Alert.alert('jhkg')
-  // },[coins])
+  useEffect(()=>{
+    setInterval(()=>{cryptoPrices(),
+    setCoins(prices)},2000)
+   
+  },[coins])
 
 
   return (
@@ -74,14 +69,14 @@ export default function ProductCard({navigation, item}) {
           // text={coins?.map(e=> e.symbol + e.rate )}
           // coins?.map(e=>e.symbol) + price/coins?.map(e=>e.rate)
 
-          text={coins ? coins?.map(e=>e.symbol+e.rate): <Text>loading...</Text>}
+          text={coins ? coins?.map(e=>e.symbol) + price/coins?.map(e=>e.rate): <Text>loading...</Text>}
           style={{
             fontSize: scale(18),
             color: appColors.primary,
             fontWeight: '500',
           }}
         />
-        <TouchableOpacity onPress={handleprice}><Text>ok</Text></TouchableOpacity>
+       
       </View>
   
     </Pressable>

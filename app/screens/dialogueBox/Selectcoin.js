@@ -1,61 +1,32 @@
-// import React from "react";
-// import { View, StyleSheet, Button, Alert } from "react-native";
 
-// const showAlert = (handleLoad) =>
-//   Alert.alert(
-//     "Alert Title",
-//     "My Alert Msg",
-//     [
-//       {
-//         text: "ok",
-//         onPress: () => {handleLoad(true)},
-//         style: "cancel",
-//       },
-//     ],
-//     {
-//       cancelable: true,
-//       onDismiss: () =>
-//         Alert.alert(
-//           "This alert was dismissed by tapping outside of the alert dialog."
-//         ),
-//     }
-//   );
-
-// const Selectcoin = ({loadHandle}) => (
-//   <View style={styles.container}>
-//     <Button title="Show alert" onPress={()=>{showAlert(loadHandle)}} />
-//   </View>
-// );
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center"
-//   }
-// });
-
-// export default Selectcoin;
-
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { View, Picker, StyleSheet } from "react-native";
+import { useSelector } from 'react-redux';
+import { cryptoPrices } from "../../redux/cryptoPricesAction";
+
 
 const Selectcoin = ({loadHandle}) => {
-  const [selectedValue, setSelectedValue] = useState("Select Coin");
+  const [selectedValue, setSelectedValue] = useState();
+  const [selects, setSelects] = useState();
+  const { prices } = useSelector((state)=> state.cryptoPrices )
+  useEffect(()=>{
+    cryptoPrices();
+    setSelects(prices)
+    console.log(prices)
+   },[])
   return (
     <View style={styles.container}>
       <Picker
         selectedValue={selectedValue}
         style={{ height: 50, width: 150 }}
-        onValueChange={(itemValue, itemIndex) =>{ setSelectedValue(itemValue),loadHandle(true)}}
+        onValueChange={(itemValue, itemIndex) =>{ setSelectedValue(itemValue),loadHandle()}}
       >
-        <Picker.Item label="Trx" value="Trx" />
-        <Picker.Item label="SOL" value="SOL" />
+        {prices?.map((item)=>(
+            <Picker.Item label={item.name} value={item.name}  />))}
       </Picker>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

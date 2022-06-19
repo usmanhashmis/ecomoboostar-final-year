@@ -4,13 +4,16 @@ const initialState = {
   prices: [],
 };
 export default function (state = initialState, action) {
-  switch (action.type) {
-    case 'PRICES':
+  const {type,payload} = action
+  switch (type) {
+    case PRICES:
       return {
         ...state,
-        prices: action.payload,
+        prices:[state.prices,...payload],
       };
     default:
       return state; //must be like this so it can  presist the reducers
   }
 }
+
+

@@ -74,7 +74,7 @@ See [Getting Started](https://facebook.github.io/react-native/docs/getting-start
  - [Redux-persist](https://github.com/rt2zz/redux-persist) `6.0.0`
  - [Touch-ripple](https://github.com/noddy1996/react-native-touch-ripple) `0.0.0`
  
-## Get Started
+
 
 
 #### 1. Installation

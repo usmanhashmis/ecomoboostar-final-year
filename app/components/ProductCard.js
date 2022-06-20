@@ -26,7 +26,7 @@ export default function ProductCard({navigation, item}) {
   useEffect(()=>{
     // Alert.alert("jsFHJDHFJK")
     // setInterval(()=>{ cal() },1000)
-    //cal();
+    cal();
     
   },[coins])
  

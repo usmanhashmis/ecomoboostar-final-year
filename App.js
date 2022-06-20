@@ -31,10 +31,15 @@ MaterialCommunityIcons.loadFont()
 const App =  () => {
   const[load, setLoad] = useState(false);
   const {persistor, store} = storePre;
+  
+  const changehandle=()=> {
+    setLoad(true)
+  }
   return (
     
     <Provider store={store}>
-    {!load && <Selectcoin loadHandle={setLoad}/>}
+      
+    {!load && <Selectcoin loadHandle={changehandle}/>}
     {load &&
       <PersistGate loading={null} persistor={persistor}>
         {navigationTypeTabs ? <TabNavigationStack/> : <MainStack />} 

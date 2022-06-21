@@ -22,21 +22,11 @@ IOs and Android
 - Google Ads (Replace your app id in : AndroidManifest.xml and info.plist) 
 - Search (Coming soon) 
 
-## YouTube
-- [Subscribe](https://www.youtube.com/channel/UCtyZ9z0ulUQsyP-wLrNyJ4A) `Subscribe for more`
-## Instagram
-- [Follow](https://www.instagram.com/amu.dev/) `Follow on IG`
+
 
 ## Web
 - [ecomobooster](https://ecomobooster.xyz/) `Visit us`
 
-## Buy me a coffee
-<a href="https://www.buymeacoffee.com/amusoftech" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-
-## ❤️ Support us
-- `Donate (Eth) : 021A827e911350a7133ac494F3D7D2281e0B75F9` 
-## Screens Recording
-![Video](/screens-shots/video_.gif?raw=true "Run time Video")
 
 ## Requirements
 - [Node](https://nodejs.org) `6.x` or newer
@@ -48,15 +38,6 @@ IOs and Android
 
 See [Getting Started](https://facebook.github.io/react-native/docs/getting-started.html) to install requirement tools.
 
-## Stack
-- [React JS](https://reactjs.org/) is a JavaScript library
-- [React Native](https://facebook.github.io/react-native/) `0.63.2` for building native apps using react
-- [Redux](https://redux.js.org) `4.0.5` a predictable state container for Javascript apps
-- [Redux-persist](https://github.com/rt2zz/redux-persist) `6.0.0` Persist and rehydrate a redux store. Javascript apps
-- [Alert](https://github.com/testshallpass/react-native-dropdownalert) `4.3.0` An alert to notify users 
-- [Babel](http://babeljs.io/) `7.2.3` for ES6+ support
-- [Bottom-Tabs](https://github.com/react-navigation/react-navigation) `5.11.11` for Bottom Navigations 
-- [Navigation for React Native](https://reactnavigation.org/) a router based on new React Native Navigation API
 
 ## Libraries
  - [@react-native-community/masked-view](https://github.com/react-native-community/react-native-masked-view) `0.1.10`

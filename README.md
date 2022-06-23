@@ -11,7 +11,7 @@ IOs and Android
 - Remove Cart
 - Category
 - Best Selling
-- Payment Processor (RazorPay)
+- Payment throuh crypto based or through coins (btc,trx,sol,xml,xrp)
 - Profile
 - Filters
 - Product Review (Listing)
@@ -19,10 +19,7 @@ IOs and Android
 - Multiple Shipping address
 - Order History
 - Wish List (With Redux)
-- Google Ads (Replace your app id in : AndroidManifest.xml and info.plist) 
-- Search (Coming soon) 
-
-
+- Search 
 
 ## Web
 - [ecomobooster](https://ecomobooster.xyz/) `Visit us`

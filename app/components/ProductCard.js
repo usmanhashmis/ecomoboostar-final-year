@@ -9,6 +9,11 @@ import axios from "react-native-axios";
 import { useDispatch } from 'react-redux';
 import { cryptoPrices } from '../redux/cryptoPricesAction';
 
+//import * as firebaseobj from 'firebase';
+import  firebaseobj  from 'firebase/compat';
+
+
+
 export default function ProductCard({navigation, item}) {
   const {title,name, description, price, image, isNew,rating} = item;
   const[coins,setCoins] = useState();
@@ -20,33 +25,35 @@ export default function ProductCard({navigation, item}) {
     "sort": "rank",
     "order": "ascending",
     "offset": 0,
-    "limit": 1,
+    "limit": 4,
     "meta": true
   }
   useEffect(()=>{
     
-    // setInterval(()=>{ cal() },1000)
-    //cal();
+   // setInterval(()=>{ cal(),setdatabase() },2000)
+   cal();
+
     
-  },[coins])
+  },[])
  
   const cal=()=>{
     axios.post('https://api.livecoinwatch.com/coins/list',data,{
         headers: { 
         'content-Type': 'application/json',
-        'x-api-key': 'dc2efdfb-4389-437d-b755-e9e2593897a3'
+        'x-api-key': '96315795-d069-44c6-b618-8ecb6ac71611'
     }})
     .then((res)=>{
-        // setCoins(data);
       setCoins(res.data);
       
-      //dispatch(cryptoPrices(res.data))
-      //dispatch({type:'PRICES',payload : res.data})
     }).catch(()=>{
-        Alert.alert("error")
+        Alert.alert("error here")
     })
 
 }
+// const setdatabase=()=>{
+//   const crypto = firebaseobj.database().ref("datacrypto");
+//   crypto.set(coins);
+// }
 
   return (
     <Pressable onPress={() => navigation.navigate('ProductDetails',{item})} style={{}}>

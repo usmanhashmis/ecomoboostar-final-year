@@ -23,13 +23,19 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; 
 import Selectcoin from './app/screens/dialogueBox/Selectcoin'
 import { Provider as PaperProvider } from 'react-native-paper';
+
+// import  firebaseobj  from 'firebase/compat';
+// import {firebaseConfig} from './Config';
+
+// firebaseobj.initializeApp(firebaseConfig);
+
 MaterialIcons.loadFont()
 Ionicons.loadFont()
 FontAwesome.loadFont()
 Feather.loadFont()
 MaterialCommunityIcons.loadFont()
 const App =  () => {
-  const[load, setLoad] = useState(false);
+  const[load, setLoad] = useState(true);
   const {persistor, store} = storePre;
   return (
     

@@ -12,12 +12,12 @@ const persistConfig = {
     storage: AsyncStorage,
     //blacklist:[ 'wishList'/*  'cart' */] //Add reducer if you don`t want to presist it
   }
-const middleWares = [sagaMiddleware];
+const middleWares = [sagaMiddleware,thunk];
 
 //1
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-const store = createStore(persistedReducer, applyMiddleware(...middleWares,thunk))
+const store = createStore(persistedReducer, applyMiddleware(...middleWares))
 let persistor = persistStore(store)
 sagaMiddleware.run(rootSaga)
 

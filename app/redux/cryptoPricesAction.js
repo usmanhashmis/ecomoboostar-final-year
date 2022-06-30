@@ -1,11 +1,12 @@
 export const PRICES = 'PRICES'; // ACTION TYPE
+import axios from 'axios';
 
 const data={
   "currency": "USD",
   "sort": "rank",
   "order": "ascending",
   "offset": 0,
-  "limit": 3,
+  "limit": 1,
   "meta": true
 }
 

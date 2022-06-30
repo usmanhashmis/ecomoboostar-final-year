@@ -10,19 +10,15 @@ import { useDispatch } from 'react-redux';
 import { cryptoPrices } from '../redux/cryptoPricesAction';
 import { useSelector } from 'react-redux';
 
-export default function ProductCard({navigation, item}) {
+export default function ProductCard({navigation, item,prices}) {
   const {title,name, description, price, image, isNew,rating} = item;
   const[coins,setCoins] = useState();
+  const dispatch =useDispatch();
  
-    const { prices } = useSelector((state)=> state.cryptoPrices )
+    
   
-  useEffect(()=>{
-    setInterval(()=>{cryptoPrices(),
-    setCoins(prices)},2000)
-   
-  },[coins])
 
-
+  console.log("Data"+prices);
   return (
     <>
     <Pressable onPress={() => navigation.navigate('ProductDetails',{item})} style={{}}>

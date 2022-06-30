@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
     case PRICES:
       return {
         ...state,
-        prices:[state.prices,...payload],
+        prices:payload,
       };
     default:
       return state; //must be like this so it can  presist the reducers

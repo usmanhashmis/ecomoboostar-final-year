@@ -28,7 +28,7 @@ FontAwesome.loadFont()
 Feather.loadFont()
 MaterialCommunityIcons.loadFont()
 const App =  () => {
-  const[load, setLoad] = useState(false);
+  const[load, setLoad] = useState(true);
   const {persistor, store} = storePre;
 
   const changehandle=()=> {

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {View, Text, FlatList, Pressable,RefreshControl} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Container from '../../components/Container';
@@ -11,6 +11,8 @@ import {appColors} from '../../utils/appColors';
 import BottomButtons from '../../components/BottomButtons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ReduxWrapper from '../../utils/ReduxWrapper';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 function index({products:{ products }, productList,navigation, route: {params}}) {
 
@@ -57,7 +59,14 @@ function index({products:{ products }, productList,navigation, route: {params}})
     );
   };
   const BrandCard = ({item}) => {
-    const {label,icon, products} =item
+    const {label,icon, products} =item ;
+    const { prices } = useSelector((state)=> state.cryptoPrices )
+    const dispatch =useDispatch();
+  useEffect(()=>{
+    setInterval(()=>{dispatch(cryptoPrices()),
+    setCoins(prices)},2000)
+   
+  },[])
     return (
       <View style={{  borderRadius:scale(5), backgroundColor:appColors.white, flexDirection:"row", paddingHorizontal:scale(20),paddingVertical:scale(20)}}>
         <View style={{marginRight:scale(10), backgroundColor:appColors.black,height:scale(40), width:scale(40), justifyContent:'center', alignItems:'center', borderRadius:scale(20) }}>
@@ -95,7 +104,7 @@ function index({products:{ products }, productList,navigation, route: {params}})
               <ProductCard
                 key={index}
                 navigation={navigation}
-                item={{...item, isNew: index < 1}}
+                item={{...item, isNew: index < 1,prices}}
               />
             )}
           />

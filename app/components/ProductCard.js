@@ -24,7 +24,7 @@ export default function ProductCard({navigation, item}) {
     "meta": true
   }
   useEffect(()=>{
-    // Alert.alert("jsFHJDHFJK")
+    
     // setInterval(()=>{ cal() },1000)
     //cal();
     

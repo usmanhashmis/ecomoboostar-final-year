@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, ImageBackground, Pressable} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground, Pressable, Alert} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Container from '../../components/Container';
 import Label from '../../components/Label';
@@ -17,11 +17,14 @@ import ReduxWrapper from '../../utils/ReduxWrapper';
 function index({wishList:{wishItemNames}, cart:{ cartItems },addToWishList$,addToCart$, navigation,route:{params}}) {
    
   const {id,title, name,description, detail, price, size, color, image, isFav,rating} = params.item;
+  //const val=params.val
+  
   //console.warn({cartItems});
   const onAddToCart = () => {
     addToCart$({...params.item, quantity:1});
   };
   const _renderBottom = () => {
+    Alert.alert(val)
     return (
       <BottomButtons
         onPress={() => {

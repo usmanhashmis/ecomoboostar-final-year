@@ -37,20 +37,52 @@
 
 // export default Selectcoin;
 
-import React, { useState } from "react";
-import { View, Picker, StyleSheet } from "react-native";
+import React, { useState,useEffect,useContext } from "react";
+import { View, Picker, StyleSheet, Alert,Text } from "react-native";
+import axios from "react-native-axios";
+import {AuthContext} from '../../authContext';
 
-const Selectcoin = ({loadHandle}) => {
+const Selectcoin = ({loadHandle,setPicker}) => {
   const [selectedValue, setSelectedValue] = useState("Select Coin");
-  return (
+
+  const { setCryptoData,getCoin,getCryptoData} = useContext(AuthContext);
+
+
+  // useEffect(()=>{
+  //   // Alert.alert("jsFHJDHFJK")
+  //   setInterval(()=>{ cal() },1000) 
+  // },[coins])
+ 
+//   const cal=()=>{
+//     axios.post('https://api.livecoinwatch.com/coins/list',data,{
+//         headers: { 
+//         'content-Type': 'application/json',
+//         'x-api-key': '96315795-d069-44c6-b618-8ecb6ac71611'
+//     }})
+//     .then((res)=>{
+//       setCryptoData(res.data)
+//       //setCoins(res.data);
+//     })
+// }
+const handleChange=(coin)=>{
+  //Alert.alert(itemValue)
+  setPicker(coin)
+  //setCoin(coin);
+  loadHandle(true)
+
+}
+return (
+
     <View style={styles.container}>
+      
       <Picker
         selectedValue={selectedValue}
         style={{ height: 50, width: 150 }}
-        onValueChange={(itemValue, itemIndex) =>{ setSelectedValue(itemValue),loadHandle(true)}}
+        onValueChange={(itemValue, itemIndex) =>{handleChange(itemValue)}}
       >
-        <Picker.Item label="Trx" value="Trx" />
-        <Picker.Item label="SOL" value="SOL" />
+        <Picker.Item value={null} label="select currency"/>
+        {getCryptoData?.map(e=><Picker.Item label={e.name} value={e.name}/>)}
+      
       </Picker>
     </View>
   );
